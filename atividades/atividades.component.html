@@ -1,0 +1,38 @@
+<div class="container-fluid m-3 p-3 formulario_container" style="margin-top: 80px !important;">
+
+  <div class="row" style="width: 100%">
+    <h3 style="float: left" class="titleH3 m-3">Pesquisar Atividades/Ações sustentáveis cadastradas</h3>
+    <button style="float:right" (click)="adicionar()" class="btn-grande btn-pequeno float-right ml-auto"><a routerLink="/home/novas-atividades">Adicionar</a></button>
+  </div>
+  <div class="col-sm-12 col-md-6">
+      <input  id="buscarConsulta" 
+              type="text" 
+              class="validate" 
+              placeholder="Digite o nome da atividade/ação sustentáveis"
+              [(ngModel)]="pesquisa"
+              (keyup)="pesquisarAtividades()"
+      >             
+  </div>
+  
+  <p-dataView [value]="listaAtividades" emptyMessage="Nenhuma atividade cadastrada">
+      <ng-template let-atividade pTemplate="listItem">
+          <!--Container com cada paciente-->
+          <div class="col-sm-12 col-md-12 col-lg-10 container-paciente card float-left mx-auto px-2 pb-4 pt-2 divpaciente">
+              <div class="row">
+                  <div class="col-10 m-3">
+                      <h3 class="titleH3">{{atividade.nome}}</h3>
+                      <p style="font-size: 1.4em">
+                        {{atividade.cargo}}
+                      </p>
+                      <p style="font-size: 1.4em">
+                        {{atividade.isTreinado == true? 'O funcionário já foi treinado para suas atividades': 'Treinamento ainda pendente'}}
+                      </p>
+                      <p style="font-size: 1.4em">
+                        {{atividade.observacoes}}
+                      </p>
+                  </div>
+              </div>
+          </div>
+      </ng-template>
+  </p-dataView> 
+</div>

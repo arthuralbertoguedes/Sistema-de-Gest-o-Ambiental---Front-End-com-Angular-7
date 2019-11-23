@@ -1,0 +1,32 @@
+<div class="container-fluid m-3 p-3 formulario_container" style="margin-top: 80px !important;">
+
+  <div class="row" style="width: 100%">
+    <h3 style="float: left" class="titleH3 m-3">Pesquisar metas já cadastradas</h3>
+    <button style="float:right" (click)="adicionar()" class="btn-grande btn-pequeno float-right ml-auto"><a routerLink="/home/nova-meta">Adicionar</a></button>
+  </div>
+  <div class="col-sm-12 col-md-6">
+      <input  id="buscarConsulta" 
+              type="text" 
+              class="validate" 
+              placeholder="Digite o nome da meta a ser pesquisada"
+              [(ngModel)]="pesquisa"
+              (keyup)="pesquisarMetas()"
+      >
+  </div>
+  
+  <p-dataView [value]="listaMetas" emptyMessage="Nenhuma meta cadastrada">
+      <ng-template let-meta pTemplate="listItem">
+          <!--Container com cada paciente-->
+          <div class="col-sm-12 col-md-12 col-lg-10 container-paciente card float-left mx-auto px-2 pb-4 pt-2 divpaciente">
+              <div class="row">
+                  <div class="col-10 m-3">
+                      <h3 class="titleH3">{{meta.nome}}</h3>
+                      <span style="font-size: 1.4em">
+                          Período para conclusão: De {{meta.dataInicio | date: 'dd/MM/yyyy'}} ate {{meta.dataFim | date: 'dd/MM/yyyy'}}
+                      </span>
+                  </div>
+              </div>
+          </div>
+      </ng-template>
+  </p-dataView> 
+</div>

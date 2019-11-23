@@ -1,0 +1,65 @@
+<div class="container-fluid" style="margin-top: 75px !important;">
+    <section class="container-fluid p-0">
+        <!-- Cabeçalho -->
+        <div class="row secaopaciente" *ngIf="pacienteEscolhido!=undefined">
+            <div class="col-4 p-0" style="height: 100px;">
+                <!--  <img  class="img-fluid" src="../../../assets/pessoa.jpg" alt="" style="height: 100px; width: 150px; max-width: 300px;" class="ml-5"> -->
+            </div>
+            <div class="col-8">
+                    <span class="cabecalhopaciente">{{pacienteEscolhido.nome}}</span>
+                    <br/>
+                    <span class="cabecalhopaciente">{{idadepaciente}} anos</span>
+                    <br/>
+                    <!--Colocar o objetivo aqui quando tiver implementado no JPA -->
+                    <span class="cabecalhopaciente">{{pacienteEscolhido.genero == 'M'? 'Masculino' : 'Feminino'}}</span>
+            </div>
+        </div>
+
+    </section>
+
+    <div class="container-fluid " style="margin-top: -30px !important; max-height: 85px; margin-left: 100px;">
+        <div class="row">
+            <div class="col-12">
+                <div class="p2 m-4">
+                    <p-tabMenu [model]="items" [activeItem]="activeItem" class="col-6">
+                        <ng-template pTemplate="item" let-item let-i="index" >
+                            <div style="position: relative; text-align: center; min-width: 10em;" (click)="abrirComponenteCorrespondente(item)">          
+                                <div>
+                                    <img [src]="imagens[i]" style="height: 40px;">
+                                </div>
+                                <div class="ui-menuitem-text">
+                                    {{item.label}}
+                                </div>
+                            </div>
+                        </ng-template>
+                    </p-tabMenu>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container containerShadow w-100">
+        <anamnese 
+                [pacienteEscolhido] = pacienteEscolhido
+                *ngIf="mostrarAnamnese"
+                (click)="iniciarAnamnese()">
+        </anamnese>
+        <antropometria
+                [paciente] = pacienteEscolhido
+                *ngIf="mostrarAntropometria"
+                (click)="iniciarAntropometria()">
+        </antropometria>
+        <composicao-corporal
+                [paciente] = pacienteEscolhido
+                *ngIf="mostrarComposicaoCorporal"
+                (click)="iniciarComposicaoCorporal()">
+        </composicao-corporal>
+        <plano-alimentar
+                    *ngIf="mostrarPlanoAlimentar"
+                    [pacienteEscolhido] = pacienteEscolhido
+                    (click)="iniciarPlanoAlimentar()">
+            
+        </plano-alimentar>
+    </div>
+
+</div>

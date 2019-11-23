@@ -1,0 +1,77 @@
+<div class="container-fluid" style="margin-top: 95px !important;">
+    <form action="" novalidate class="formulario_container" [formGroup]="funcionarioForm">
+        <h3 class="titleH3">Cadastro de Funcionários</h3>
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <input  id="buscarConsulta" 
+                        type="text" 
+                        class="validate" 
+                        formControlName="nome"
+                        placeholder="Digite o nome do novo funcionário"
+       
+                >
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="row">
+                  <div class="col-sm-12 col-md-12">
+
+                        <input  id="cargo" 
+                        type="text" 
+                        class="validate" 
+                        formControlName="cargo"
+                        placeholder="Cargo que o funcionário ocupa"
+       
+                >
+                    </div>
+                    
+              </div>
+                
+            </div>
+            <div class="col-sm-12 col-md-10">
+                    <input  id="observacoes" 
+                    type="text" 
+                    class="validate" 
+                    formControlName="observacoes"
+                    placeholder="Observações acerca das tarefas ambientais">
+            </div> 
+            <div class="col-sm-12 col-md-2">
+                <label> Realizou treinamento?
+                        <input class="with-gap" 
+                               name="treinamento" 
+                               type="radio" 
+                               checked
+                               value="true"
+                               (click)="radioTrue()"
+                               formControlName="treinamento"/>
+                        <span>Sim</span>
+                    </label>
+            </div>
+          
+        </div>     
+        
+        <div class="row mt-5 ">
+            <button class="btn waves-effect waves-light mx-3" 
+                    type="button" 
+                    name="action" 
+                    (click)="voltar()"
+                    class="btn-grande btn-pequeno float-left bg-cinza-btn"
+                    >
+                    <a>Voltar</a>
+
+            </button> 
+
+            <button class="btn waves-effect waves-light mx-3" 
+                    type="button" 
+                    name="action" 
+                    (click)="salvar()"
+                    [disabled]="!funcionarioForm.valid"
+                    class="btn-grande btn-pequeno float-right ml-auto"
+                     ><a>Salvar</a>
+
+            </button>                       
+        </div>
+        <p-messages [(value)]="msgs"></p-messages>
+    </form>
+</div>
+
+ 

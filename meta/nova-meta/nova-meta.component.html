@@ -1,0 +1,70 @@
+<div class="container-fluid" style="margin-top: 95px !important;">
+    <form action="" novalidate class="formulario_container" [formGroup]="novaMetaForm">
+        <h3 class="titleH3">Cadastro de Metas e Objetivos</h3>
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <input  id="buscarConsulta" 
+                        type="text" 
+                        class="validate" 
+                        formControlName="nome"
+                        placeholder="Digite o nome da nova meta"
+       
+                >
+            </div>
+            <div class="col-sm-12 col-md-6">
+              <div class="row">
+                  <div class="col-sm-12 col-md-6">
+
+                      <p-calendar 
+                              id="data"
+                              [locale]="ptbr" 
+                              dateFormat="dd/mm/yy"
+                              placeholder="Data de Início "
+                              formControlName="dataInicio"
+                              (onSelect)="vincularDataInicio($event)"
+                              styleClass="ajustePrimengInputs">
+                      </p-calendar>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                      <p-calendar 
+                              id="data"
+                              [locale]="ptbr" 
+                              dateFormat="dd/mm/yy"
+                              placeholder="Data de Finalização"
+                              formControlName="dataFim"
+                              (onSelect)="vincularDataFim($event)"
+                              styleClass="ajustePrimengInputs">
+                      </p-calendar>
+                   </div> 
+              </div>
+                
+            </div>
+          
+        </div>     
+        
+        <div class="row mt-5 ">
+            <button class="btn waves-effect waves-light mx-3" 
+                    type="button" 
+                    name="action" 
+                    (click)="voltar()"
+                    class="btn-grande btn-pequeno float-left bg-cinza-btn"
+                    >
+                    <a>Voltar</a>
+
+            </button> 
+
+            <button class="btn waves-effect waves-light mx-3" 
+                    type="button" 
+                    name="action" 
+                    (click)="salvar()"
+                    [disabled]="!novaMetaForm.valid"
+                    class="btn-grande btn-pequeno float-right ml-auto"
+                     ><a>Salvar</a>
+
+            </button>                       
+        </div>
+        <p-messages [(value)]="msgs"></p-messages>
+    </form>
+</div>
+
+ 
