@@ -1,0 +1,66 @@
+<div class="container-fluid  telaShadow"  style=" margin-top: 95px !important;
+margin-left: 15px;">
+    <div class="titulo-flutuante">
+        <h3 class="titleH3">Mensagens</h3>
+    </div>
+
+    <section class="container-fluid telaShadow" *ngIf="mostrarHistorico">
+        <h3 style="margin-bottom: 25px !important; font-weight: 700;">Histórico de mensagens</h3>
+        <div class="row">     
+            <div *ngIf="mensagens!= undefined && mensagens != null">
+                <p *ngFor="let mensagem of mensagens">
+                <span>{{mensagem.horario | date: 'dd/MM/yyyy HH:mm'}}: {{mensagem.remetente=='nutricionista'? mensagem.usuario.nome: mensagem.paciente.nome}} diz - {{mensagem.mensagem}}</span>    
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="container-fluid con">
+        <div class="row">
+
+            <div class="row" style="width: 100%">
+                    <div class="input-field col-sm-1 col-md-1">     
+                        <i class="material-icons prefix">textsms</i>
+                    </div> 
+                    <div class="col-sm-12 col-md-12" >
+                        <p-autoComplete
+                                    [suggestions]="listapacientes" 
+                                    (completeMethod)="listarpacientes($event.query)"
+                                    (onSelect)="vincularpaciente($event)" 
+                                    field="nome" 
+                                    [size]="30"
+                                    [minLength]="1"
+                                    placeholder="Nome do paciente *"
+                                    id="nomepaciente"
+                                    styleClass="ajustePrimengInputs"
+                                    >
+                    </p-autoComplete>
+                </div>
+            </div>
+
+            <textarea pInputTextarea [(ngModel)]="mensagem" placeholder="Escreva a mensagem para o paciente..."></textarea>
+    
+
+            <button class="btn waves-effect  mt-4 waves-light mx-3 float-left" 
+                [disabled]="pacienteEscolhido == undefined"
+                type="button" 
+                name="action" 
+                (click)="abrirHistoricoMensagens()"
+                >Histórico de mensagens
+                <i class="material-icons right" style="color: white;">drafts</i>
+            </button>  
+        
+            <button class="btn waves-effect mt-4 waves-light mx-3 ml-auto"
+                [disabled]="pacienteEscolhido == undefined"
+                type="button" 
+                name="action" 
+                (click)="salvar()"
+                >Enviar
+                <i class="material-icons right" style="color: white;">send</i>
+            </button>    
+
+        </div>
+    </section>
+    
+</div>    
